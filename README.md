@@ -28,7 +28,7 @@
 
 ​			你可以[点击这里](https://www.python.org/)来下载python。请选择较新的版本。
 
-​			你需要安装```requests   beautifulsoup   selenium```才能正常使用这个工具。
+​			你需要安装```requests```   ```beautifulsoup```   ```selenium```才能正常使用这个工具。
 
 ​			你可以通过下面三条命令来轻松地安装他们：
 ​			```pip install requests```
@@ -39,26 +39,41 @@
 
 ​			**或者你可以参考网络上的相关教程**
 
+
+
 ​	零、你需要一个Google Chrome浏览器，你可以[点击这里](https://www.google.cn/intl/zh-CN/chrome/)来下载它
 
-​	一、打开```cookies_get.py```，如果一切正常，那么Chrome会打开一个未登录的B站主页。这时，你需要登录你的B站账号。登录成功			后，你可以回到你运行```cookies_get.py```的窗口，键入回车。如果一切正常，等待终端中出现“获取cookies成功”的字样后，此时，			`jsoncookie.json`应位于```cookies_get.py```所在的同级目录。
+
+
+​	一、打开```cookies_get.py```，如果一切正常，那么Chrome会打开一个未登录的B站主页。这时，你需要登录你的B站账号。登录成功后，你可以回到你运行```cookies_get.py```的窗口，键入回车。如果一切正常，等待终端中出现“获取cookies成功”的字样后，此时，`jsoncookie.json`应位于```cookies_get.py```所在的同级目录。
+
+
 
 ​	二、打开```biliDownloader.py```,按照注释配置你的headers、下载用的cookies路径以及保存路径
 
-​		1.headers的配置（仍然以Chrome为例）：打开你的Chrome——打开B站——按下F12打开开发者工具——点击”网络“（Network）			——翻到最上面，在左侧”名称“（Name）一栏寻找```www.bilibili.com```（如果没有就按F5刷新一下）——点击```www.bilibili.com```，在右侧点击“标头”（Headers），向下翻找。找到“请求标头”（Request Headers）。你可以在这里找到配置你的			headers需要的一切。
 
-​		2.下载用的cookies路径：这是 you-get 需要调用的参数。根据官方说明，目前只支持两种 `cookie` 格式 即`Mozilla cookies.sqlite` 			和`Netscape cookies.txt`。前者是火狐浏览器的cookies文件，你可以在火狐浏览器上登录你的B站账号并选择“记住密码”，然后			在你的“文件资源管理器”（或者“我的电脑”....）中输入```%appdata%/Mozilla/firefox/profiles```，然后你能够看到一些文件和文件			夹，其中一个文件夹叫做```[8位数字字母].default-release```，打开它，你可以找到```cookies.sqlite```，它正是需要的文件。选中后右			键它，点击“复制文件位置即可”。这里要注意：神奇的Windows路径如果直接输入进去会运行不了（主要是代码缺陷），你需要			将原来的单斜杠```\```变为双斜杠```\\```，注意斜杠的方向。关于第二种格式，尚未尝试过，猜测可以通过将第一步中所得的cookies转			换为.txt来使用，请自行尝试。
+
+​		1.headers的配置（仍然以Chrome为例）：打开你的Chrome——打开B站——按下F12打开开发者工具——点击”网络“（Network）——翻到最上面，在左侧”名称“（Name）一栏寻找```www.bilibili.com```（如果没有就按F5刷新一下）——点击```www.bilibili.com```，在右侧点击“标头”（Headers），向下翻找。找到“请求标头”（Request Headers）。你可以在这里找到配置你的headers需要的一切。
+
+
+​		2.下载用的cookies路径：这是 you-get 需要调用的参数。根据官方说明，目前只支持两种 `cookie` 格式 即`Mozilla cookies.sqlite`和`Netscape cookies.txt`。前者是火狐浏览器的cookies文件，你可以在火狐浏览器上登录你的B站账号并选择“记住密码”，然后在你的“文件资源管理器”（或者“我的电脑”....）中输入```%appdata%/Mozilla/firefox/profiles```，然后你能够看到一些文件和文件夹，其中一个文件夹叫做```[8位数字字母].default-release```，打开它，你可以找到```cookies.sqlite```，它正是需要的文件。选中后右键它，点击“复制文件位置即可”。这里要注意：神奇的Windows路径如果直接输入进去会运行不了（主要是代码缺陷），你需要将原来的单斜杠```\```变为双斜杠```\\```，注意斜杠的方向。关于第二种格式，尚未尝试过，猜测可以通过将第一步中所得的cookies转换为.txt来使用，请自行尝试。
+
 
 ​			你可以[点击这里](https://www.firefox.com.cn/)来下载火狐浏览器
 
-​		3.保存路径：你希望视频保存的位置，没什么特别的，只要和上面一样注意斜杠的问题就可以了。需要注意的是：虽然you-get提供			了默认的保存路径，但是由于代码缺陷，如果你将保存路径置空，会出现问题。
+
+​		3.保存路径：你希望视频保存的位置，没什么特别的，只要和上面一样注意斜杠的问题就可以了。需要注意的是：虽然you-get提供了默认的保存路径，但是由于代码缺陷，如果你将保存路径置空，会出现问题。
+
 
 ​	三、在```NameList.txt```中，每行一个地填入你想要下载的up主的UID，你可以在你浏览器上方的地址栏找到他们的UID。记得保存。
 
-​	四、运行```biliDownloader.py```。等待完成。运行过程中出现```[uid][数字].html```和```data_aid_list_[uid]_page[数字].txt```是正常的，运行			完成后会自行删除。
 
-​	五、如果一切正常，运行完成后，应当生成一系列的```links_[uid].bat```文件，你可以点击```Start.bat```来开始并行的下载每一个up主的		  作品（单个up主的作品是逐个下载的）
 
+​	四、运行```biliDownloader.py```。等待完成。运行过程中出现```[uid][数字].html```和```data_aid_list_[uid]_page[数字].txt```是正常的，运行完成后会自行删除。
+
+
+
+​	五、如果一切正常，运行完成后，应当生成一系列的```links_[uid].bat```文件，你可以点击```Start.bat```来开始并行的下载每一个up主的作品（单个up主的作品是逐个下载的）
 
 
 # 免责声明
